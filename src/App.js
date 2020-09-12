@@ -1,24 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import { AppBar, Toolbar, Typography } from '@material-ui/core'
+import { makeStyles } from '@material-ui/core/styles';
 import './App.css';
 
+const useStyles = makeStyles(theme => ({
+  header: {
+    [theme.breakpoints.up('sm')]: {
+      fontSize: '1.5rem'
+    },
+  },
+}));
+
 function App() {
+  const [count, setCount] = useState(0);
+  const classes = useStyles();
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <AppBar position="static">
+        <Toolbar>
+          <Typography className={classes.header} variant="subtitle1" color="inherit">
+            Fromage Heart
+          </Typography>
+        </Toolbar>
+      </AppBar>
+      <div>
+        <p>You clicked {count} times</p>
+        <button onClick={() => setCount(count + 1)}>
+          Click me
+        </button>
+      </div>
     </div>
   );
 }
