@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { AppBar, Toolbar, Tabs, Tab, Typography } from '@material-ui/core'
+import { AppBar, Toolbar, Tabs, Tab, Link } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
 import InstagramIcon from '@material-ui/icons/Instagram';
 import FacebookIcon from '@material-ui/icons/Facebook';
@@ -8,6 +8,8 @@ import MailOutlineIcon from '@material-ui/icons/MailOutline';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import header from './assets/header.png';
 import background from './assets/background.jpg';
+import background2 from './assets/background2.jpg';
+import logo from './assets/logo.png';
 import './App.css';
 
 const useStyles = makeStyles(theme => ({
@@ -26,12 +28,15 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'center',
   },
   tab: {
-    [theme.breakpoints.up('sm')]: {
-      fontSize: '1rem',
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '0.75rem',
+      padding: '0 8px',
     },
+    fontSize: '1rem',
     width: 'fit-content',
     minWidth: '90px',
     minHeight: '54px',
+    borderRadius: '8px 8px 0 0',
     padding: '0 16px',
     cursor: 'pointer',
     display: 'flex',
@@ -41,12 +46,8 @@ const useStyles = makeStyles(theme => ({
   socialIcon: {
     padding: '0 8px',
   },
-  backgroundContainer: {
-    height: '100vh',
-    overflow: 'hidden',
-  },
   background: {
-    backgroundImage: `url(${background})`,
+    backgroundImage: `url(${background2})`,
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center',
     backgroundAttachment: 'fixed',
@@ -55,7 +56,20 @@ const useStyles = makeStyles(theme => ({
     animation: 'fadeInAnimation ease 1.5s, zoomOutAnimation 1.5s',
     animationIterationCount: '1',
     animationFillMode: 'forwards',
+    filter: 'brightness(65%)',
   },
+  backgroundContainer: {
+    position: 'relative',
+  },
+  logo: {
+    position: 'absolute',
+    left: '0',
+    right: '0',
+    top: '150px',
+    margin: 'auto',
+    height: '75vh',
+    width: '75vh',
+  }
 }));
 
 function App() {
@@ -88,25 +102,24 @@ function App() {
           <Tab className={classes.tab} label="FAQs" />
           <Tab className={classes.tab} label="Contact" />
         </Tabs>
-          <a href={'https://www.facebook.com/Fromage-Heart-100615558433767'}>
+          <Link href={'https://www.facebook.com/Fromage-Heart-100615558433767'} color="inherit">
             <FacebookIcon className={classes.socialIcon} />
-          </a>
-          <a href={'https://www.instagram.com/fromageheart/'}>
+          </Link>
+          <Link href={'https://www.instagram.com/fromageheart/'} color="inherit">
             <InstagramIcon className={classes.socialIcon} />
-          </a>
-          <a href={'https://twitter.com/fromageheart'}>
+          </Link>
+          <Link href={'https://twitter.com/fromageheart'} color="inherit">
             <TwitterIcon className={classes.socialIcon} />
-          </a>
-          <a href={'mailto:fromageheart@gmail.com'}>
+          </Link>
+          <Link href={'mailto:fromageheart@gmail.com'} color="inherit">
             <MailOutlineIcon className={classes.socialIcon} />
-          </a>
+          </Link>
           <Tab className={classes.tab} onClick={() => setCount(count + 1)} icon={<ShoppingCartIcon />} label={`Cart (${count})`} />
         </Toolbar>
       </AppBar>
-      <div className={classes.backgroundContainer}>
-        <div className={classes.background}>
-        </div>
+      <div className={classes.background}>
       </div>
+      <img src={logo} alt="Logo" className={classes.logo}/>
     </div>
   );
 }

@@ -1,5 +1,11 @@
 .App {
-  text-align: center;
+  /* text-align: center; */
+}
+
+body {
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
 }
 
 a, a:visited {
@@ -8,10 +14,10 @@ a, a:visited {
 
 @keyframes fadeInAnimation { 
   0% { 
-      opacity: 0; 
+      opacity: 0;
   } 
   100% { 
-      opacity: 1; 
+      opacity: 0.9; 
   } 
 }
 
