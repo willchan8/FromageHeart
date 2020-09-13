@@ -6,14 +6,16 @@ import FacebookIcon from '@material-ui/icons/Facebook';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import MailOutlineIcon from '@material-ui/icons/MailOutline';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
-import './App.css';
 import header from './assets/header.png';
+import background from './assets/background.jpg';
+import './App.css';
 
 const useStyles = makeStyles(theme => ({
   header: {
     width: '320px',
     height: '80px',
     margin: '12px auto 0',
+    zIndex: 100,
   },
   toolbar: {
     [theme.breakpoints.up('sm')]: {
@@ -38,7 +40,22 @@ const useStyles = makeStyles(theme => ({
   },
   icon: {
     padding: '0 4px',
-  }
+  },
+  backgroundContainer: {
+    height: '100vh',
+    overflow: 'hidden',
+  },
+  background: {
+    backgroundImage: `url(${background})`,
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: 'center',
+    backgroundAttachment: 'fixed',
+    backgroundSize: 'cover',
+    height: '100vh',
+    animation: 'fadeInAnimation ease 2s, zoominoutsinglefeatured 2s',
+    animationIterationCount: '1',
+    animationFillMode: 'forwards',
+  },
 }));
 
 function App() {
@@ -46,7 +63,7 @@ function App() {
   const classes = useStyles();
   return (
     <div className="App">
-      <AppBar position="static">
+      <AppBar position="fixed">
         <img className={classes.header} src={header} alt="Fromage Heart"/>
         <Toolbar className={classes.toolbar}>
           <Typography className={classes.tab} variant="h6" color="inherit">
@@ -70,20 +87,29 @@ function App() {
           <Typography className={classes.tab} variant="h6" color="inherit">
             Contact
           </Typography>
-          <FacebookIcon className={classes.tab} />
-          <InstagramIcon className={classes.tab} />
-          <TwitterIcon className={classes.tab} />
-          <MailOutlineIcon className={classes.tab} />
-          <Typography className={classes.tab} variant="h6" color="inherit">
+          <a href={'https://www.facebook.com/Fromage-Heart-100615558433767'}>
+            <FacebookIcon className={classes.tab} />
+          </a>
+          <a href={'https://www.instagram.com/fromageheart/'}>
+            <InstagramIcon className={classes.tab} />
+          </a>
+          <a href={'https://twitter.com/fromageheart'}>
+            <TwitterIcon className={classes.tab} />
+          </a>
+          <a href={'mailto:fromageheart@gmail.com'}>
+            <MailOutlineIcon className={classes.tab} />
+          </a>
+          <Typography className={classes.tab} onClick={() => setCount(count + 1)} variant="h6" color="inherit">
             Cart
             <ShoppingCartIcon className={classes.icon} />
             {`(${count})`}
           </Typography>
         </Toolbar>
       </AppBar>
-      <button onClick={() => setCount(count + 1)}>
-        Add Item to Cart
-      </button>
+      <div className={classes.backgroundContainer}>
+        <div className={classes.background}>
+        </div>
+      </div>
     </div>
   );
 }
