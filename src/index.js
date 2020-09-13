@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import theme from './theme';
+import './styles/index.css';
+import App from './components/App';
+import theme from './styles/theme';
 import { ThemeProvider } from '@material-ui/core/styles';
 
 import * as serviceWorker from './serviceWorker';
