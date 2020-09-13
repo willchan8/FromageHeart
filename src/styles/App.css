@@ -1,0 +1,25 @@
+.App {
+  text-align: center;
+}
+
+a, a:visited {
+  color: inherit;
+}
+
+@keyframes fadeInAnimation { 
+  0% { 
+      opacity: 0;
+  } 
+  100% { 
+      opacity: 0.9; 
+  } 
+}
+
+@keyframes zoomOutAnimation {
+  0% {
+      transform: scale(1.2, 1.2);
+  }
+  100% {
+      transform: scale(1, 1);
+  }
+}
