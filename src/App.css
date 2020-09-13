@@ -15,7 +15,7 @@ a, a:visited {
   } 
 }
 
-@keyframes zoominoutsinglefeatured {
+@keyframes zoomOutAnimation {
   0% {
       transform: scale(1.2, 1.2);
   }

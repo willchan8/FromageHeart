@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { AppBar, Toolbar, Typography } from '@material-ui/core'
+import { AppBar, Toolbar, Tabs, Tab, Typography } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
 import InstagramIcon from '@material-ui/icons/Instagram';
 import FacebookIcon from '@material-ui/icons/Facebook';
@@ -26,20 +26,20 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'center',
   },
   tab: {
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.up('sm')]: {
       fontSize: '1rem',
-      padding: '8px'
     },
+    width: 'fit-content',
+    minWidth: '90px',
+    minHeight: '54px',
     padding: '0 16px',
-    fontWeight: '300',
-    letterSpacing: '0.03em',
     cursor: 'pointer',
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
   },
-  icon: {
-    padding: '0 4px',
+  socialIcon: {
+    padding: '0 8px',
   },
   backgroundContainer: {
     height: '100vh',
@@ -52,7 +52,7 @@ const useStyles = makeStyles(theme => ({
     backgroundAttachment: 'fixed',
     backgroundSize: 'cover',
     height: '100vh',
-    animation: 'fadeInAnimation ease 2s, zoominoutsinglefeatured 2s',
+    animation: 'fadeInAnimation ease 1.5s, zoomOutAnimation 1.5s',
     animationIterationCount: '1',
     animationFillMode: 'forwards',
   },
@@ -60,50 +60,47 @@ const useStyles = makeStyles(theme => ({
 
 function App() {
   const [count, setCount] = useState(0);
+  const [value, setValue] = useState(0);
   const classes = useStyles();
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  }
+
   return (
     <div className="App">
       <AppBar position="fixed">
         <img className={classes.header} src={header} alt="Fromage Heart"/>
         <Toolbar className={classes.toolbar}>
-          <Typography className={classes.tab} variant="h6" color="inherit">
-            Home
-          </Typography>
-          <Typography className={classes.tab} variant="h6" color="inherit">
-            About
-          </Typography>
-          <Typography className={classes.tab} variant="h6" color="inherit">
-            Picnic Boxes
-          </Typography>
-          <Typography className={classes.tab} variant="h6" color="inherit">
-            Grazing Tables
-          </Typography>
-          <Typography className={classes.tab} variant="h6" color="inherit">
-            Charcuterie Boards
-          </Typography>
-          <Typography className={classes.tab} variant="h6" color="inherit">
-            FAQs
-          </Typography>
-          <Typography className={classes.tab} variant="h6" color="inherit">
-            Contact
-          </Typography>
+        <Tabs
+          value={value}
+          onChange={handleChange}
+          indicatorColor="secondary"
+          textColor="secondary"
+          variant="scrollable"
+          centered
+        >
+          <Tab className={classes.tab} label="Home" />
+          <Tab className={classes.tab} label="About" />
+          <Tab className={classes.tab} label="Picnic Boxes" />
+          <Tab className={classes.tab} label="Grazing Tables" />
+          <Tab className={classes.tab} label="Charcuterie Boards" />
+          <Tab className={classes.tab} label="FAQs" />
+          <Tab className={classes.tab} label="Contact" />
+        </Tabs>
           <a href={'https://www.facebook.com/Fromage-Heart-100615558433767'}>
-            <FacebookIcon className={classes.tab} />
+            <FacebookIcon className={classes.socialIcon} />
           </a>
           <a href={'https://www.instagram.com/fromageheart/'}>
-            <InstagramIcon className={classes.tab} />
+            <InstagramIcon className={classes.socialIcon} />
           </a>
           <a href={'https://twitter.com/fromageheart'}>
-            <TwitterIcon className={classes.tab} />
+            <TwitterIcon className={classes.socialIcon} />
           </a>
           <a href={'mailto:fromageheart@gmail.com'}>
-            <MailOutlineIcon className={classes.tab} />
+            <MailOutlineIcon className={classes.socialIcon} />
           </a>
-          <Typography className={classes.tab} onClick={() => setCount(count + 1)} variant="h6" color="inherit">
-            Cart
-            <ShoppingCartIcon className={classes.icon} />
-            {`(${count})`}
-          </Typography>
+          <Tab className={classes.tab} onClick={() => setCount(count + 1)} icon={<ShoppingCartIcon />} label={`Cart (${count})`} />
         </Toolbar>
       </AppBar>
       <div className={classes.backgroundContainer}>
