@@ -63,7 +63,6 @@ function Header() {
         onChange={handleChange}
         indicatorColor="secondary"
         textColor="secondary"
-        variant="scrollable"
         centered
       >
         <Tab className={classes.tab} label="Home" />
